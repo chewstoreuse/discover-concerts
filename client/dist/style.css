@@ -3,7 +3,39 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.map {}
+/* sidebar styles */
+.sidebar {
+  margin: 0;
+  padding: 20px;
+  width: 300px;
+  position: fixed;
+  display: block;
+  height: 100%;
+  overflow: auto;
+  background-color: #f1f1f1;
+}
+
+.sidebar h1 {
+  /* color: #5C636A; */
+  margin-bottom: 50px;
+}
+
+.my-concerts {
+  position: fixed;
+  bottom: 25px;
+  font-size: 26px;
+  align-items: left;
+}
+
+.my-concerts a:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+/* map styles */
+.map {
+  margin-left: 300px;
+}
 
 path {
   pointer-events: all;
