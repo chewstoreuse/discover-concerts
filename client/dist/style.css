@@ -1,6 +1,7 @@
 html,
 body {
   font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
 }
 
 /* sidebar styles */
@@ -34,7 +35,10 @@ body {
 
 /* map styles */
 .map {
-  margin-left: 300px;
+  position: absolute;
+  top: 49%;
+  left: 59%;
+  transform: translate(-50%, -50%);
 }
 
 path {
@@ -45,3 +49,41 @@ path:hover {
   opacity: 0.50;
   cursor: pointer;
 }
+
+/* modal styles */
+.Modal {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  right: 20%;
+  bottom: 10%;
+  padding: 20px;
+  background-color: lightgrey;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.Modal::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+
+.Modal i {
+  cursor: pointer;
+  padding: 0 0 10px 10px;
+}
+
+.accordion {
+  margin: 15px 0;
+}
+
+/* responsive styles */
+/* @media screen and (max-width: 1350px) {
+  .sidebar {
+    width: 100%;
+    height: 30%;
+  }
+} */
