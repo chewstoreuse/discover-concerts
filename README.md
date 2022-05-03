@@ -1,1 +1,1 @@
-# discover-concerts
+# Discover Concerts
