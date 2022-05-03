@@ -52,6 +52,8 @@ path:hover {
 
 /* modal styles */
 .Modal {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 10%;
   left: 20%;
@@ -59,6 +61,17 @@ path:hover {
   bottom: 10%;
   padding: 20px;
   background-color: lightgrey;
+}
+
+.Modal i {
+  cursor: pointer;
+  float: right;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.modal-content-container {
+  margin: 15px 0;
   overflow: scroll;
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */
@@ -66,18 +79,14 @@ path:hover {
   /* Firefox */
 }
 
-.Modal::-webkit-scrollbar {
+.modal-content-container::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
 }
 
-.Modal i {
+.add {
+  float: right;
   cursor: pointer;
-  padding: 0 0 10px 10px;
-}
-
-.accordion {
-  margin: 15px 0;
 }
 
 /* responsive styles */
