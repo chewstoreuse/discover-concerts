@@ -11,8 +11,6 @@ const Map = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [countryState, setCountryState] = useState('');
   const [concertData, setConcertData] = useState([]);
-  const [filteredConcerts, setFilteredConcerts] = useState([]);
-
   const [filteredStates, setFilteredStates] = useState([]);
   const [stateOptions, setStateOptions] = useState({});
 
@@ -29,7 +27,6 @@ const Map = (props) => {
     })
       .then(concerts => {
         let events = concerts.data._embedded.events;
-        setFilteredConcerts(events);
 
         let states = [];
         events.forEach(event => {
