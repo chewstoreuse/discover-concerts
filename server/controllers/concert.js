@@ -2,8 +2,13 @@ const Concert = require('../models/concert');
 
 module.exports = {
   getMyConcert: function (req, res) {
-    console.log('get request recieved');
-    res.sendStatus(200);
+    Concert.find({})
+      .then(concerts => {
+        res.status(200).send(concerts);
+      })
+      .catch(err => {
+        res.status(500).send(err);
+      })
   },
   addMyConcert: function (req, res) {
     let conditions = {
@@ -26,5 +31,18 @@ module.exports = {
       .catch(err => {
         res.status(500).send(err);
       });
-  }
+  },
+  markGoingConcert: function (req, res) {
+    Concert.findOne(req.body)
+      .then(concert => {
+        concert.going = !concert.going;
+        return concert.save();
+      })
+      .then(response => {
+        res.sendStatus(204);
+      })
+      .catch(err => {
+        res.status(500).send(err);
+      });
+  },
 }

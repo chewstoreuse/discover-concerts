@@ -4,10 +4,6 @@ import axios from 'axios';
 const MyConcerts = () => {
   const [myConcerts, setMyConcerts] = useState([]);
 
-  // const handleGoing = () => {
-
-  // }
-
   useState(() => {
     axios.get('/myConcert')
       .then(concerts => {
@@ -19,6 +15,19 @@ const MyConcerts = () => {
       });
   }, []);
 
+  const handleGoing = (params) => {
+    axios.put('/markGoingConcert', params)
+      .then(response => {
+        return axios.get('/myConcert');
+      })
+      .then(concerts => {
+        setMyConcerts(concerts.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   return (
     <div className='my-concerts-page'>
       <ul>
@@ -27,16 +36,19 @@ const MyConcerts = () => {
             <li key={i}>
               <div>
                 <h3>{concert.event}</h3>
-                {concert.location} - {concert.date} <a href={concert.url}>TICKETS</a>
+                {concert.location} - {concert.date} <a href={concert.url}>TICKETS</a> - <a href='#'>REMOVE</a>
               </div>
               <div>
-                <button type='button' className='btn btn-secondary'>Not Going</button>
+                <button onClick={() => handleGoing({
+                  event: concert.event,
+                  url: concert.url
+                })} type='button' className={concert.going ? 'btn btn-primary' : 'btn btn-secondary'} >{concert.going ? 'Going' : 'Not Going'}</button>
               </div>
             </li>
           );
         })}
       </ul>
-    </div>
+    </div >
   );
 }
 
