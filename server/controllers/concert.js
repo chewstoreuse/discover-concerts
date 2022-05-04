@@ -6,7 +6,6 @@ module.exports = {
     res.sendStatus(200);
   },
   addMyConcert: function (req, res) {
-    console.log(req.body);
     let conditions = {
       event: req.body.event,
       location: req.body.location
@@ -25,7 +24,7 @@ module.exports = {
         res.sendStatus(201);
       })
       .catch(err => {
-        console.log(err);
+        res.status(500).send(err);
       });
   }
 }
