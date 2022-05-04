@@ -28,6 +28,21 @@ const MyConcerts = () => {
       });
   }
 
+  const handleRemove = (params) => {
+    axios.delete('/myConcert', {
+      data: params
+    })
+      .then(response => {
+        return axios.get('/myConcert');
+      })
+      .then(concerts => {
+        setMyConcerts(concerts.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   return (
     <div className='my-concerts-page'>
       <ul>
@@ -36,7 +51,12 @@ const MyConcerts = () => {
             <li key={i}>
               <div>
                 <h3>{concert.event}</h3>
-                {concert.location} - {concert.date} <a href={concert.url}>TICKETS</a> - <a href='#'>REMOVE</a>
+                {concert.location} - {concert.date} <a href={concert.url}>TICKETS</a> - <a href='#' onClick={() => handleRemove({
+                  event: concert.event,
+                  location: concert.location,
+                  date: concert.date,
+                  url: concert.url
+                })} >REMOVE</a>
               </div>
               <div>
                 <button onClick={() => handleGoing({

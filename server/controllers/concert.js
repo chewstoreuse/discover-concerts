@@ -32,6 +32,15 @@ module.exports = {
         res.status(500).send(err);
       });
   },
+  removeMyConcert: function (req, res) {
+    Concert.deleteOne(req.body)
+      .then(response => {
+        res.sendStatus(204);
+      })
+      .catch(err => {
+        res.status(500).send(err);
+      });
+  },
   markGoingConcert: function (req, res) {
     Concert.findOne(req.body)
       .then(concert => {

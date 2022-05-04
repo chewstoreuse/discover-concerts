@@ -19,6 +19,7 @@ app.get('/api/concert', api.getConcert);
 //db routes
 app.get('/myConcert', controllers.getMyConcert);
 app.post('/myConcert', controllers.addMyConcert);
+app.delete('/myConcert', controllers.removeMyConcert);
 app.put('/markGoingConcert', controllers.markGoingConcert);
 
 app.listen(PORT, () => {
