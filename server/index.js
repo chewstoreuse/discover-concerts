@@ -13,11 +13,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-//api calls
+//api routes
 app.get('/api/concert', api.getConcert);
 
-//db calls
-app.get('/concert', controllers.getConcert)
+//db routes
+app.get('/myConcert', controllers.getMyConcert);
+app.post('/myConcert', controllers.addMyConcert);
 
 app.listen(PORT, () => {
   console.log(`listening on port: ${PORT}`);

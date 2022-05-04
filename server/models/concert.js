@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
 const concertSchema = new mongoose.Schema({
-  artist: String,
+  event: String,
   location: String,
-  date: String
+  date: String,
+  url: String,
+  going: { type: Boolean, default: false }
 });
 
 const Concert = mongoose.model('Concert', concertSchema);
