@@ -95,6 +95,23 @@ path:hover {
   padding: 2em;
 }
 
+.my-concerts-page ul {
+  padding: 0;
+  list-style: none;
+}
+
+.my-concerts-page li {
+  padding: 15px;
+  margin: 0 15px 15px 15px;
+  background-color: #f1f1f1;
+}
+
+.my-concerts-page button {
+  float: right;
+  position: relative;
+  bottom: 3em;
+}
+
 /* responsive styles */
 /* @media screen and (max-width: 1350px) {
   .sidebar {
