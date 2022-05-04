@@ -89,6 +89,12 @@ path:hover {
   cursor: pointer;
 }
 
+/* my concerts page styles */
+.my-concerts-page {
+  margin-left: 300px;
+  padding: 2em;
+}
+
 /* responsive styles */
 /* @media screen and (max-width: 1350px) {
   .sidebar {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const ModalContent = (props) => {
   const [concerts, setConcerts] = useState([]);
@@ -24,7 +25,14 @@ const ModalContent = (props) => {
 
     setConcerts(allShows);
 
-  }, [])
+  }, []);
+
+  const addMyConcerts = (concert) => {
+    axios.post('/myConcert', concert)
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   return (
     <div className='accordion' id='accordionConcerts'>
@@ -53,7 +61,12 @@ const ModalContent = (props) => {
                       </div>
                       <div>
                         {show.dates.start.localDate} @{show.dates.start.localTime} <a href={`${details.url}`}>TICKETS</a>
-                        <a className="add">Add to My Concerts</a>
+                        <a onClick={() => addMyConcerts({
+                          event: concert.name,
+                          location: `${details.name}, ${details.city.name}`,
+                          date: show.dates.start.localDate,
+                          url: details.url
+                        })} className="add">Add to My Concerts</a>
                       </div>
                       {!lastShow && <hr />}
                     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   return (
     <div className='sidebar'>
       <h1><strong>Discover Concerts</strong></h1>
@@ -12,7 +12,7 @@ const Sidebar = () => {
       </div>
       <button type='button' className='btn btn-secondary'>Filter</button>
       <div className='my-concerts'>
-        <a><strong>My Concerts</strong></a>
+        <a onClick={() => props.handlePageSelect('my-concerts')}><strong>My Concerts</strong></a>
       </div>
     </div>
   );
