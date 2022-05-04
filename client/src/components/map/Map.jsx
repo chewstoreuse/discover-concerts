@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import USAMap from 'react-usa-map';
 import Modal from 'react-modal';
@@ -6,10 +6,56 @@ import ModalContent from './ModalContent.jsx';
 
 Modal.setAppElement('#root');
 
-const Map = () => {
+const Map = (props) => {
+  const isMounted = useRef(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [countryState, setCountryState] = useState('');
   const [concertData, setConcertData] = useState([]);
+  const [filteredConcerts, setFilteredConcerts] = useState([]);
+
+  const [filteredStates, setFilteredStates] = useState([]);
+  const [stateOptions, setStateOptions] = useState({});
+
+  useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+
+    axios.get('/api/concert', {
+      params: {
+        keyword: props.keyword
+      }
+    })
+      .then(concerts => {
+        let events = concerts.data._embedded.events;
+        setFilteredConcerts(events);
+
+        let states = [];
+        events.forEach(event => {
+          if (event._embedded.venues[0].state) {
+            states.push(event._embedded.venues[0].state.stateCode);
+          }
+        });
+
+        setFilteredStates(states);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [props.keyword]);
+
+  useEffect(() => {
+    let options = {};
+
+    filteredStates.forEach(state => {
+      options[state] = {
+        fill: '#0A5ED7'
+      }
+    });
+
+    setStateOptions(options);
+  }, [filteredStates]);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -19,10 +65,17 @@ const Map = () => {
     setCountryState(event.target.dataset.name);
 
     axios.get('/api/concert', {
-      params: { state: event.target.dataset.name }
+      params: {
+        state: event.target.dataset.name,
+        keyword: props.keyword
+      }
     })
       .then(concerts => {
-        // console.log(concerts.data);
+        if (!concerts.data._embedded) {
+          alert('No concerts here :(');
+          return;
+        }
+
         setConcertData(concerts.data._embedded.events);
         setIsOpen(true);
       })
@@ -34,7 +87,7 @@ const Map = () => {
   return (
     <>
       <div className='map'>
-        <USAMap onClick={mapHandler} />
+        <USAMap customize={stateOptions} onClick={mapHandler} />
       </div>
 
       <Modal

@@ -2,7 +2,7 @@ const Concert = require('../models/concert');
 
 module.exports = {
   getMyConcert: function (req, res) {
-    Concert.find({})
+    Concert.find(req.query)
       .then(concerts => {
         res.status(200).send(concerts);
       })

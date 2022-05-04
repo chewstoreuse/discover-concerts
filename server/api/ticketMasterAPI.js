@@ -6,7 +6,7 @@ const API_KEY = process.env.API_KEY;
 
 module.exports = {
   getConcert: function (req, res) {
-    let url = `${apiURL}/discovery/v2/events.json?stateCode=${req.query.state}&classificationName=Music&apikey=${API_KEY}`;
+    let url = `${apiURL}/discovery/v2/events.json?${req.query.state ? `stateCode=${req.query.state}` : ''}&keyword=${req.query.keyword}&classificationName=Music&apikey=${API_KEY}`;
 
     axios.get(url)
       .then(response => {
@@ -15,5 +15,5 @@ module.exports = {
       .catch(err => {
         res.status(500).send(err);
       });
-  }
+  },
 }
