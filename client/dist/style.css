@@ -18,7 +18,7 @@ body {
 
 .sidebar h1 {
   /* color: #5C636A; */
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .my-concerts {
@@ -113,9 +113,40 @@ path:hover {
 }
 
 /* responsive styles */
-/* @media screen and (max-width: 1350px) {
+@media screen and (max-width: 1350px) {
   .sidebar {
+    position: relative;
     width: 100%;
-    height: 30%;
   }
-} */
+
+  .my-concerts {
+    position: relative;
+    font-size: 26px;
+    float: right;
+    bottom: 1.5em;
+  }
+
+  .map {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #back-to-map {
+    bottom: 2.5em;
+  }
+
+  .my-concerts-page {
+    margin-left: 0;
+    padding: 2em;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .my-concerts-page button {
+    float: none;
+    bottom: 0;
+    margin-top: 10px;
+  }
+}
