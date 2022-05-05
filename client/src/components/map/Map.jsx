@@ -20,6 +20,11 @@ const Map = (props) => {
       return;
     }
 
+    if (props.keyword === '') {
+      setFilteredStates([]);
+      return;
+    }
+
     axios.get('/api/concert', {
       params: {
         keyword: props.keyword,

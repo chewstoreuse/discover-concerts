@@ -21,6 +21,10 @@ body {
   margin-bottom: 30px;
 }
 
+.clear {
+  margin-left: 1em;
+}
+
 .my-concerts {
   position: fixed;
   bottom: 25px;

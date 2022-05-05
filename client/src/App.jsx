@@ -14,7 +14,7 @@ const App = () => {
 
   const handlePageSelect = (currentPage) => {
     setPage(currentPage);
-  }
+  };
 
   const handleInputFilter = (filter) => {
     if (filter.artist.length && filter.genre.length) {
@@ -32,10 +32,18 @@ const App = () => {
     setKeyword(filter.artist || filter.genre);
   };
 
+  const handleClearFilter = () => {
+    setDate({
+      startDate: '',
+      endDate: ''
+    });
+    setKeyword('');
+  };
+
   if (page === 'map') {
     return (
       <>
-        <Sidebar handlePageSelect={handlePageSelect} handleInputFilter={handleInputFilter} />
+        <Sidebar handlePageSelect={handlePageSelect} handleInputFilter={handleInputFilter} handleClearFilter={handleClearFilter} />
         <Map keyword={keyword} date={date} />
       </>
     );
