@@ -22,7 +22,9 @@ const Map = (props) => {
 
     axios.get('/api/concert', {
       params: {
-        keyword: props.keyword
+        keyword: props.keyword,
+        startDate: props.date.startDate,
+        endDate: props.date.endDate
       }
     })
       .then(concerts => {
@@ -64,7 +66,9 @@ const Map = (props) => {
     axios.get('/api/concert', {
       params: {
         state: event.target.dataset.name,
-        keyword: props.keyword
+        keyword: props.keyword,
+        startDate: props.date.startDate,
+        endDate: props.date.endDate
       }
     })
       .then(concerts => {
