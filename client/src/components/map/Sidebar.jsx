@@ -23,7 +23,7 @@ const Sidebar = (props) => {
         <button onClick={() => props.handleInputFilter(filter)} type='button' className='btn btn-secondary'>Filter</button>
       </div>
       <div className='my-concerts'>
-        <a onClick={() => props.handlePageSelect('my-concerts')}><strong>My Concerts</strong></a>
+        <button onClick={() => props.handlePageSelect('my-concerts')} type='button' className='btn btn-secondary'>My Concerts</button>
       </div>
     </div>
   );

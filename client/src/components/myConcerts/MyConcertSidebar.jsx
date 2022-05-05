@@ -5,7 +5,7 @@ const MyConcertSidebar = (props) => {
     <div className='sidebar'>
       <h1><strong>My Concerts</strong></h1>
       <div className='my-concerts' id='back-to-map'>
-        <a onClick={() => props.handlePageSelect('map')}><strong>Back to Map</strong></a>
+        <button onClick={() => props.handlePageSelect('map')} type='button' className='btn btn-secondary'>Back to Map</button>
       </div>
     </div>
   );

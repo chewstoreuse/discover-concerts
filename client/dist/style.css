@@ -28,11 +28,6 @@ body {
   align-items: left;
 }
 
-.my-concerts a:hover {
-  cursor: pointer;
-  opacity: 0.5;
-}
-
 /* map styles */
 .map {
   position: absolute;
@@ -131,7 +126,7 @@ path:hover {
     position: relative;
     font-size: 26px;
     float: right;
-    bottom: 1.5em;
+    bottom: 1.7em;
   }
 
   .map {
