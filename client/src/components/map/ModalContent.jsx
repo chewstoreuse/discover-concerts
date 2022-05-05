@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ModalContentItem from './ModalContentItem.jsx';
 import axios from 'axios';
 
 const ModalContent = (props) => {
@@ -24,7 +25,6 @@ const ModalContent = (props) => {
     }
 
     setConcerts(allShows);
-
   }, []);
 
   const addMyConcerts = (concert) => {
@@ -48,28 +48,20 @@ const ModalContent = (props) => {
               <div className='accordion-body'>
                 {concert.shows.map((show, i) => {
                   let details = show._embedded.venues[0];
-                  let lastShow = false;
+                  let isLastShow = false;
+                  let concertInfo = {
+                    event: concert.name,
+                    location: `${details.name}, ${details.city.name}`,
+                    date: show.dates.start.localDate,
+                    url: details.url
+                  }
 
                   if (i === concert.shows.length - 1) {
-                    lastShow = true;
+                    isLastShow = true;
                   }
 
                   return (
-                    <div key={i}>
-                      <div>
-                        {details.name}, {details.city.name}
-                      </div>
-                      <div>
-                        {show.dates.start.localDate} @{show.dates.start.localTime} <a href={`${details.url}`}>TICKETS</a>
-                        <a onClick={() => addMyConcerts({
-                          event: concert.name,
-                          location: `${details.name}, ${details.city.name}`,
-                          date: show.dates.start.localDate,
-                          url: details.url
-                        })} className="add">Add to My Concerts</a>
-                      </div>
-                      {!lastShow && <hr />}
-                    </div>
+                    <ModalContentItem key={i} show={show} details={details} isLastShow={isLastShow} concertInfo={concertInfo} addMyConcerts={addMyConcerts} />
                   );
                 })}
               </div>

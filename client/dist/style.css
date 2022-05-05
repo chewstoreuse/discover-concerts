@@ -89,6 +89,14 @@ path:hover {
   cursor: pointer;
 }
 
+.added,
+.added:hover {
+  text-decoration: none;
+  cursor: auto;
+  color: black;
+  font-weight: bold;
+}
+
 /* my concerts page styles */
 .my-concerts-page {
   margin-left: 300px;
